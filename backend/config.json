@@ -1,0 +1,71 @@
+{
+  "accept_town_positions": true,
+  "base_experience": "不限",
+  "certificate": [
+    "中共党员"
+  ],
+  
+  "education": {
+    "education_requirements": [
+      "本科以上",
+      "不限",
+      "大专以上"
+    ],
+    "education_weights": [
+      {
+        "value": "本科以上",
+        "weight": 92
+      },
+      {
+        "value": "不限",
+        "weight": 64
+      },
+      {
+        "value": "大专以上",
+        "weight": 66
+      }
+    ]
+  },
+  "fresh_graduate": true,
+  "location": {
+    "city_weights": [
+      {
+        "city": "佛山",
+        "weight": 84
+      }
+    ],
+    "location_preferences": [
+        {
+          "location": "南海",
+          "weight": 84
+        }
+    ],
+    "target_cities": [
+      "佛山"
+    ]
+  },
+  "professional": [
+    {
+      "keyword": "金融学",
+      "weight": 100,
+      "color": "3b82f6"
+    },
+    {
+      "keyword": "中国语言文学类",
+      "weight": 95,
+      "color": "b5f73b"
+    }
+  ],
+  "threshold": {
+    "优秀": 88,
+    "良好": 80
+  },
+  "weight": {
+    "发展度": 0.25,
+    "城市竞争度": 0.23,
+    "学历": 0.07,
+    "就职地": 0.12,
+    "应届生": 0.28,
+    "适配度": 0.05
+  }
+}
