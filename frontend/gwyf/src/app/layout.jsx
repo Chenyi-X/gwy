@@ -2,7 +2,6 @@
 import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
 
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata = {
