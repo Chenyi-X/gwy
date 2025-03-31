@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const Page = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white overflow-hidden font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-white-50 to-white overflow-hidden font-sans">
       {/* 3D波浪背景 */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[800px] bg-gradient-to-b from-blue-50 to-transparent opacity-70"></div>
@@ -24,19 +24,19 @@ const Page = () => {
       <div className="relative z-10 pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center">
           <br className="hidden md:block" /><br className="hidden md:block" />
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 to-blue-600 text-transparent bg-clip-text tracking-tight animate-fade-in">
+          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white-600 to-blue-600 text-transparent bg-clip-text tracking-tight animate-fade-in">
             选岗帮
           </h1>
           
-          <p className="mt-6 text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto animate-fade-in animation-delay-200">
+          <p className="mt-6 text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto animate-fade-in animation-delay-200">
             还在为不知道如何选岗而烦恼吗？
             <br className="hidden md:block" /><br className="hidden md:block" />
             快来试试使用我们的选岗帮吧！
           </p>
           
           <div className="mt-10 animate-fade-in animation-delay-400">
-            <Link href="/file">
-              <button className="px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-black text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 transform hover:scale-105 active:scale-95">
+            <Link href="/config">
+              <button className="px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-700 text-black text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 transform hover:scale-105 active:scale-95">
                 开始使用
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 inline-block" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -202,7 +202,7 @@ const Page = () => {
         </div>
       </div>
       
-      {/* 开始使用区域 - 修改了背景色和按钮颜色，提高对比度 */}
+      {/* 开始使用区域 - */}
       <div className="relative z-10 py-16 bg-gradient-to-t from-blue-100 to-blue-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div>
@@ -214,7 +214,7 @@ const Page = () => {
             </p>
             
             <div className="mt-8">
-              <Link href="/file">
+              <Link href="/config">
                 <button className="px-8 py-4 bg-white text-primary-700 text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 transform hover:scale-105 active:scale-95">
                   立即开始
                 </button>
