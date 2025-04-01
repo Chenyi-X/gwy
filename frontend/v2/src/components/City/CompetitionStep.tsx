@@ -44,6 +44,7 @@ export function CompetitionStep() {
                                 </Button>
 
                                 <Slider
+
                                     defaultValue={[city.competition]}
                                     min={0}
                                     max={100}
