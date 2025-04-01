@@ -5,7 +5,7 @@ import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
 // 类型定义
-export type Education = '大专' | '本科' | '硕士研究生' | '博士研究生' | '其他';
+export type Education = '大专' | '本科' | '硕士研究生' | '博士研究生' | '其他' | '空';
 
 export interface City {
   name: string;
@@ -64,7 +64,7 @@ const initialState: FormState = {
     hasFile: false,
   },
   cities: [],
-  education: '本科',
+  education: '空',
   majors: [],
   isGraduating: false,
   isCompleted: false,

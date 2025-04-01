@@ -12,7 +12,8 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { FileButton } from '@/components/File/FileButton';
 import { StepDiv } from '@/components/StepDiv';
-import { Step } from '@/components/Step';
+import { ReviewButton } from '@/components/ReviewButton';
+import { useRouter } from 'next/navigation'
 
 
 
@@ -23,26 +24,21 @@ const ConfigPage = () => {
     setStep,
     nextStep,
     prevStep,
-    setFileConfig,
-    addCity,
-    removeCity,
-    updateCityCompetition,
-    updateCityPreference,
-    setEducation,
-    addMajor,
-    removeMajor,
-    setIsCompleted,
-    resetForm
-  } = useFormStore()
+  } = useFormStore();
 
+  const router = useRouter();
 
+  const handleNextStep = () => {
+    currentStep === 6 ? router.push('/review') : nextStep()
+    
+  };
 
   return (
     <div className='min-h-screen flex flex-col'>
 
       <div className='flex-grow'>
         <div className='pt-[7rem] flex flex-col items-center justify-center  text-[2rem]'>
-          
+
           <StepDiv currentStep = {currentStep}></StepDiv>
 
           {currentStep === 1 && <FileUploadStep />}
@@ -63,8 +59,8 @@ const ConfigPage = () => {
           className="flex gap-4 items-center justify-center text-center m-10"
         >
           {currentStep === 1 && <FileButton></FileButton>}
-
-          {currentStep > 1 && (
+          {currentStep === 6 && <ReviewButton></ReviewButton>}
+          {currentStep > 1 && currentStep < 6 && (
             <div className="flex gap-4 items-center justify-center text-center">
               <Button
                 onClick={prevStep}
@@ -75,7 +71,7 @@ const ConfigPage = () => {
               </Button>
 
               <Button
-                onClick={nextStep}
+                onClick={handleNextStep}
                 variant="default"
                 className="shadow-md hover:shadow-lg transition-shadow duration-300"
               >

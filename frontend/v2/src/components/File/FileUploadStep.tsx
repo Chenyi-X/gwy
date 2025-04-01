@@ -1,11 +1,17 @@
 'use client'
+import { useFormStore } from "@/store/formStore";
 import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { useRef } from "react";
+import { useFormState } from "react-dom";
 import { toast } from "sonner";
-import { StepDiv } from "../StepDiv";
+
 
 export function FileUploadStep() {
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    
+    const {
+        setFileConfig
+    } = useFormStore();
+
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,20 +29,21 @@ export function FileUploadStep() {
             return;
         }
 
-        setSelectedFile(file);
+        setFileConfig({
+            hasFile : true,
+            file : file,
+            fileName : "file"
+        })
 
         toast("文件上传成功", {
             description: "文件已缓存",
             action: {
                 label: "OK",
-                onClick: () => console.log("Undo"),
+                onClick: () => console.log("Ok"),
             },
         });
     };
 
-    const handleUploadClick = () => {
-        fileInputRef.current?.click();
-    };
 
     return (
         <>
