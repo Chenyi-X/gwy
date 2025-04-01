@@ -34,7 +34,7 @@ const ConfigPage = () => {
   };
 
   return (
-    <div className='min-h-screen flex flex-col'>
+    <div className='h-screen flex flex-col justify-end'>
 
       <div className='flex-grow'>
         <div className='pt-[7rem] flex flex-col items-center justify-center  text-[2rem]'>
@@ -85,7 +85,9 @@ const ConfigPage = () => {
       </div>
 
       <div className='flex container mx-auto '>
+
         <div className='flex-grow-2'></div>
+
         <div className='flex-grow-1'>
           <ProgressBar
             step={currentStep}
@@ -93,6 +95,7 @@ const ConfigPage = () => {
             onStepClick={setStep}
           />
         </div>
+
         <div className='flex-grow-2'></div>
 
       </div>

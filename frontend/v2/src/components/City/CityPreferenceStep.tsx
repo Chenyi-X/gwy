@@ -6,6 +6,7 @@ import { useFormStore } from '@/store/formStore';
 import { Button } from "../ui/button";
 import { Slider } from "@/components/ui/slider"
 import { Badge } from "@/components/ui/badge"
+import { count } from "console";
 
 
 
@@ -14,6 +15,8 @@ export function CityPreferenceStep() {
         cities ,
         updateCityPreference
     } = useFormStore();
+
+    let conutId = 0;
 
     return (
         <div className="flex flex-col items-center justify-center  text-[2rem]">
@@ -33,8 +36,9 @@ export function CityPreferenceStep() {
 
                 <div className="mt-10 ">
                     {cities.map((city) => {
+                        
                         return (
-                            <div className="flex gap-4 mt-4">
+                            <div key = {conutId++} className="flex gap-4 mt-4">
                                 <Button
                                     key={city.name}
                                     variant="outline"

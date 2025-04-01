@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useFormState } from "react-dom";
 import { toast } from "sonner";
+import { Button } from "../ui/button";
 
 
 export function FileUploadStep() {
-    
+
     const {
         setFileConfig
     } = useFormStore();
@@ -30,24 +31,44 @@ export function FileUploadStep() {
         }
 
         setFileConfig({
-            hasFile : true,
-            file : file,
-            fileName : "file"
+            hasFile: true,
+            file: file,
+            fileName: "file"
         })
 
         toast("文件上传成功", {
             description: "文件已缓存",
             action: {
                 label: "OK",
-                onClick: () => console.log("Ok"),
+                onClick: () => console.log("OK"),
             },
         });
     };
 
 
+    const handleUploadClick = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handleDefaultClick = () => {
+        setFileConfig({
+            hasFile: false,
+            file: undefined,
+            fileName: undefined
+        })
+
+        toast("OK", {
+            description: "使用默认文件",
+            action: {
+                label: "OK",
+                onClick: () => console.log("OK"),
+            },
+        });
+    }
+
     return (
         <>
-            <div className="flex flex-col items-center justify-center ">
+            <div className="flex flex-col items-center justify-center gap-4">
 
 
                 <motion.div
@@ -71,7 +92,29 @@ export function FileUploadStep() {
                     <p className="mb-4">
                         系统将应用广东省2025年公务员考试职务表。
                     </p>
+
+                    <div className="flex items-center justify-center gap-4">
+                        <Button
+                            onClick={handleUploadClick}
+                            variant="default"
+                            className="shadow-md hover:shadow-lg transition-shadow duration-300"
+                        >
+                            上传
+                        </Button>
+
+                        <Button
+                            onClick={handleDefaultClick}
+                            variant="default"
+                            className="shadow-md hover:shadow-lg transition-shadow duration-300"
+                        >
+                            默认
+                        </Button>
+
+                    </div>
+
                 </motion.div>
+
+
 
                 {/* 隐藏的文件输入 */}
                 <input
