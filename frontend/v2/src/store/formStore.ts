@@ -98,10 +98,12 @@ export const useFormStore = create<FormStore>()(
         // 城市相关
         addCity: (cityName) =>
           set((state) => ({
-            cities: [
-              ...state.cities,
-              { name: cityName, preference: 5, competition: 5 },
-            ],
+            // 确保城市名称唯一
+            cities: state.cities.some((city) => city.name === cityName)? state.cities : [
+             ...state.cities,
+              { name: cityName, preference: 5, competition: 5 }, 
+            ]
+            
           })),
 
         removeCity: (cityName) =>

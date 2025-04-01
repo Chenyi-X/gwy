@@ -33,7 +33,7 @@ const ConfigPage = () => {
     resetForm
   } = useFormStore()
 
-  
+
 
   return (
     <div className='min-h-screen flex flex-col'>
@@ -81,12 +81,17 @@ const ConfigPage = () => {
 
       </div>
 
-      <div className='container mx-auto '>
-        <ProgressBar
-          step={currentStep}
-          totalSteps={6}
-          onStepClick={setStep}
-        />
+      <div className='flex container mx-auto '>
+        <div className='flex-grow-2'></div>
+        <div className='flex-grow-1'>
+          <ProgressBar
+            step={currentStep}
+            totalSteps={6}
+            onStepClick={setStep}
+          />
+        </div>
+        <div className='flex-grow-2'></div>
+
       </div>
 
 
