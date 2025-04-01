@@ -14,7 +14,7 @@ import { FileButton } from '@/components/File/FileButton';
 import { StepDiv } from '@/components/StepDiv';
 import { ReviewButton } from '@/components/ReviewButton';
 import { useRouter } from 'next/navigation'
-
+import { WeightStep } from '@/components/Weight/WeightStep';
 
 
 
@@ -29,7 +29,7 @@ const ConfigPage = () => {
   const router = useRouter();
 
   const handleNextStep = () => {
-    currentStep === 6 ? router.push('/review') : nextStep()
+    currentStep === 7 ? router.push('/review') : nextStep()
     
   };
 
@@ -47,6 +47,7 @@ const ConfigPage = () => {
           {currentStep === 4 && <CompetitionStep />}
           {currentStep === 5 && <EducationStep />}
           {currentStep === 6 && <MajorsStep />}
+          {currentStep === 7 && <WeightStep />}
         </div>
 
         {/* 按钮 */}
@@ -56,11 +57,11 @@ const ConfigPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="flex gap-4 items-center justify-center text-center m-10"
+          className="flex gap-4 items-center justify-center text-center mt-10"
         >
           {currentStep === 1 && <FileButton></FileButton>}
-          {currentStep === 6 && <ReviewButton></ReviewButton>}
-          {currentStep > 1 && currentStep < 6 && (
+          {currentStep === 7 && <ReviewButton></ReviewButton>}
+          {currentStep > 1 && currentStep < 7 && (
             <div className="flex gap-4 items-center justify-center text-center">
               <Button
                 onClick={prevStep}
@@ -91,7 +92,7 @@ const ConfigPage = () => {
         <div className='flex-grow-1'>
           <ProgressBar
             step={currentStep}
-            totalSteps={6}
+            totalSteps={7}
             onStepClick={setStep}
           />
         </div>

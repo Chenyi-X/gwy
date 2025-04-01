@@ -50,6 +50,11 @@ export function  CitiesStep() {
                     </Button>
                 </div>
                 
+                <div className="flex text-[1rem] text-gray-400">
+                    <div className="flex-1">已添加：</div>
+                    <div className="flex-4"> </div>
+                </div>
+
                 <div key={cities.length}>
                     {cities.map((city) =>(
                         <Button 

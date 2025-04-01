@@ -18,7 +18,7 @@ export function ProgressBar({
       
       {/* 前景进度条 */}
       <div 
-        className="absolute top-1/2 left-0 h-1.5 bg-primary rounded-full transform -translate-y-1/2 transition-all duration-300 ease-out" 
+        className="absolute top-1/2 left-0 h-1.5 bg-neutral-700 rounded-full transform -translate-y-1/2 transition-all duration-300 ease-out" 
         style={{ width: `${progressPercentage}%` }}
       />
 
@@ -74,6 +74,7 @@ function getStepLabel(step: number): string {
     case 4: return '竞争分析'
     case 5: return '教育背景'
     case 6: return '专业选择'
+    case 7: return '评分因素'
     default: return `步骤 ${step}`
   }
 }

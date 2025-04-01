@@ -85,11 +85,11 @@ export function FileUploadStep() {
                     </p>
 
                     <p className="mb-4">
-                        否则直接点击下一步,
+                        点击默认按钮,则应用系统默认文件：
                     </p>
 
                     <p className="mb-4">
-                        系统将应用广东省2025年公务员考试职务表。
+                        《广东省2025年公务员考试职务表》。
                     </p>
 
                     <div className="flex items-center justify-center gap-4">

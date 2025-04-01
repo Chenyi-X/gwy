@@ -18,6 +18,7 @@ export function ReviewPage() {
         majors,
         isGraduating,
         isCompleted,
+        weight,
         setIsCompleted,
         resetForm
     } = useFormStore();
@@ -26,6 +27,7 @@ export function ReviewPage() {
         resetForm(); // 重置表单
         router.push('/config'); // 跳转到配置页面
     };
+
 
     const handleSubmit = async () => {
         setIsCompleted(true);
@@ -39,6 +41,7 @@ export function ReviewPage() {
                 isGraduating,
                 currentStep : 6,
                 isCompleted,
+                weight
             };
 
             const response = await FormAPI.submitForm(formData);
@@ -71,7 +74,15 @@ export function ReviewPage() {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const factors= {
+        city :"就职单位所在地",
+        competition : "报考岗位好竞争",
+        development : "岗位发展前景好",
+        graduation : "应届生岗位",
+        educationlevel : "岗位限制学历水平"
+    };
 
+    const factorsArray = Object.keys(factors);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-6">
@@ -81,18 +92,9 @@ export function ReviewPage() {
                 transition={{ duration: 0.5 }}
                 className="w-full max-w-2xl space-y-6"
             >
-                <h1 className="text-3xl font-bold text-center mb-8">确认您的选择</h1>
+                <h1 className="text-3xl font-bold text-center mt-15 mb-3">确认您的选择</h1>
 
-                <Card className="p-6 space-y-4">
-                    {/* 文件配置 */}
-                    <div className="space-y-2">
-                        <h2 className="text-xl font-semibold">简历文件</h2>
-                        <p className="text-gray-600">
-                            {fileConfig.hasFile
-                                ? `已上传: ${fileConfig.fileName}`
-                                : "未上传文件"}
-                        </p>
-                    </div>
+                <Card className="p-6 space-y-4 shadow hover:bg-neutral-50 hover:scale-[1.01] transition-all duration-300">
 
                     {/* 城市选择 */}
                     <div className="space-y-2">
@@ -137,6 +139,23 @@ export function ReviewPage() {
 
                         </p>
                     </div>
+
+                    {/* 权重分配 */}
+                    <div className="space-y-2">
+                        <h2 className="text-xl font-semibold">因素得分</h2>
+                        <div className="flex flex-col gap-2 w-1/3">
+                           {factorsArray.map((factor,index) => (
+                            <div key={index} className="flex gap-2">
+                                <Badge key={factor} variant={"outline"} className="flex-2">
+                                    {factors[factor as keyof typeof factors]}
+                                </Badge>
+                                <Badge key={index+"s"} variant={"outline"} className="flex-1">
+                                    分数: {weight[factor as keyof typeof weight]}
+                                </Badge>
+                            </div>
+                           ))}
+                        </div>
+                    </div>
                 </Card>
 
 
@@ -150,7 +169,7 @@ export function ReviewPage() {
                                     onClick: handleReset,
                                     
                                 },
-                                
+
                                 description: "重置后您的配置将被清空"
                             })
                         }}
@@ -167,14 +186,23 @@ export function ReviewPage() {
                         返回修改
                     </Button>
                     <Button
-                        onClick={handleSubmit}
+                        onClick={() => {
+                            toast("确认要提交吗？",{
+                                action: {
+                                    label: "确认",
+                                    onClick: handleSubmit,
+
+                                },
+
+                                description: "提交后您的配置将被保存"
+                            })
+                        }}
                         disabled={isSubmitting}
                         className="w-32"
                     >
                         {isSubmitting ? "提交中..." : "确认提交"}
                     </Button>
                 </div>                
-
             </motion.div>
         </div>
     );

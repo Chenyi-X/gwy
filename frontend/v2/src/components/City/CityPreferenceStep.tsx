@@ -31,7 +31,7 @@ export function CityPreferenceStep() {
                 className="items-center justify-center text-center"
             >
                 <h2 className="mb-4">
-                    你对哪个城市或区县喜欢多一点呢？
+                    你对哪个城市或区县<span className="underline text-red-900">喜欢</span>多一点呢？
                 </h2>
 
                 <div className="mt-10 ">

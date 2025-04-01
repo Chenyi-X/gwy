@@ -13,6 +13,14 @@ export interface City {
   competition: number; // 竞争烈度 1 - 100
 }
 
+export interface Weight {
+  city : number;
+  development: number;
+  competition: number;
+  educationlevel: number;
+  graduation: number;
+}
+
 export interface FormState {
   currentStep: number;
   fileConfig: {
@@ -25,6 +33,7 @@ export interface FormState {
   majors: string[];
   isGraduating: boolean;
   isCompleted: boolean;
+  weight: Weight;
 }
 
 interface FormActions {
@@ -50,7 +59,8 @@ interface FormActions {
   
   // 表单状态
   setIsCompleted: (isCompleted: boolean) => void;
-  
+  // 权重
+  setWeight: (weight: Weight) => void;
   // 重置
   resetForm: () => void;
 }
@@ -68,6 +78,13 @@ const initialState: FormState = {
   majors: [],
   isGraduating: false,
   isCompleted: false,
+  weight: {
+    city: 50,
+    development: 50,
+    competition: 50,
+    educationlevel: 50,
+    graduation: 50,
+  }
 };
 
 export const useFormStore = create<FormStore>()(
@@ -80,7 +97,7 @@ export const useFormStore = create<FormStore>()(
         // 步骤控制
         nextStep: () =>
           set((state) => ({
-            currentStep: Math.min(state.currentStep + 1, 6),
+            currentStep: Math.min(state.currentStep + 1, 7),
           })),
 
         prevStep: () =>
@@ -149,7 +166,11 @@ export const useFormStore = create<FormStore>()(
           set((state) => ({
             majors: state.majors.filter((m) => m !== major),
           })),
-
+        // 权重
+        setWeight: (weight) =>
+          set(() => ({
+            weight,
+          })),  
         // 表单状态
         setIsCompleted: (isCompleted) =>
           set(() => ({

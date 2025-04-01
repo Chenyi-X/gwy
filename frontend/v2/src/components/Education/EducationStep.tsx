@@ -27,10 +27,12 @@ export function EducationStep() {
     ]);
 
     buttons.map((button) => {
-        if (education === button.text) {
+        if (education === "空") {
+            return;
+        } else if (education === button.text) {
             button.isClick = true;
             button.disabled = false;
-        } else {
+        } else{
             button.isClick = false;
             button.disabled = true;
         }
