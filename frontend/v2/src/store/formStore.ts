@@ -1,10 +1,11 @@
 // src/store/useFormStore.ts
 
+import { set } from 'react-hook-form';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
 // 类型定义
-export type Education = 'diploma' | 'bachelor' | 'master' | 'phd';
+export type Education = '大专' | '本科' | '硕士研究生' | '博士研究生' | '其他';
 
 export interface City {
   name: string;
@@ -22,6 +23,7 @@ export interface FormState {
   cities: City[];
   education: Education;
   majors: string[];
+  isGraduating: boolean;
   isCompleted: boolean;
 }
 
@@ -44,6 +46,7 @@ interface FormActions {
   setEducation: (education: Education) => void;
   addMajor: (major: string) => void;
   removeMajor: (major: string) => void;
+  setIsGraduating: (isGraduating: boolean) => void;
   
   // 表单状态
   setIsCompleted: (isCompleted: boolean) => void;
@@ -61,8 +64,9 @@ const initialState: FormState = {
     hasFile: false,
   },
   cities: [],
-  education: 'bachelor',
+  education: '本科',
   majors: [],
+  isGraduating: false,
   isCompleted: false,
 };
 
@@ -130,6 +134,11 @@ export const useFormStore = create<FormStore>()(
           set(() => ({
             education,
           })),
+
+        setIsGraduating: (isGraduating) =>
+          set(() => ({
+            isGraduating,
+          })),  
 
         addMajor: (major) =>
           set((state) => ({

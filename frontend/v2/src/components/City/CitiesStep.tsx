@@ -5,7 +5,7 @@ import { useFormStore } from "@/store/formStore";
 import { useRef } from "react";
 import { StepDiv } from "../StepDiv";
 
-export function CitiesStep() {
+export function  CitiesStep() {
     const {
         addCity,
         removeCity,
@@ -28,12 +28,11 @@ export function CitiesStep() {
 
     return (
         <div className="flex flex-col justify-center items-center text-[2rem]">
-            <StepDiv currentStep={2}></StepDiv>
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
                 className="text-center flex flex-col gap-4"
             >
                 <p>告诉我你感兴趣的城市或区县</p>

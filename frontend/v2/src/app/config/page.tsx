@@ -11,6 +11,8 @@ import { MajorsStep } from '@/components/Education/MajorsStep';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { FileButton } from '@/components/File/FileButton';
+import { StepDiv } from '@/components/StepDiv';
+import { Step } from '@/components/Step';
 
 
 
@@ -39,7 +41,10 @@ const ConfigPage = () => {
     <div className='min-h-screen flex flex-col'>
 
       <div className='flex-grow'>
-        <div className='pt-[7rem]'>
+        <div className='pt-[7rem] flex flex-col items-center justify-center  text-[2rem]'>
+          
+          <StepDiv currentStep = {currentStep}></StepDiv>
+
           {currentStep === 1 && <FileUploadStep />}
           {currentStep === 2 && <CitiesStep />}
           {currentStep === 3 && <CityPreferenceStep />}
@@ -48,11 +53,13 @@ const ConfigPage = () => {
           {currentStep === 6 && <MajorsStep />}
         </div>
 
+        {/* 按钮 */}
+
         <motion.div
           key={currentStep}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
           className="flex gap-4 items-center justify-center text-center m-10"
         >
           {currentStep === 1 && <FileButton></FileButton>}

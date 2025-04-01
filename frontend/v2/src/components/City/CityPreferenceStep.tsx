@@ -18,20 +18,20 @@ export function CityPreferenceStep() {
     return (
         <div className="flex flex-col items-center justify-center  text-[2rem]">
 
-            <StepDiv currentStep={3}></StepDiv>
+
 
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
                 className="items-center justify-center text-center"
             >
                 <h2 className="mb-4">
-                    你对哪个城市喜欢多一点呢？
+                    你对哪个城市或区县喜欢多一点呢？
                 </h2>
 
-                <div>
+                <div className="mt-10 ">
                     {cities.map((city) => {
                         return (
                             <div className="flex gap-4 mt-4">
@@ -39,6 +39,7 @@ export function CityPreferenceStep() {
                                     key={city.name}
                                     variant="outline"
                                     className="ml-2"
+                                    
                                 >
                                     {city.name}
                                 </Button>

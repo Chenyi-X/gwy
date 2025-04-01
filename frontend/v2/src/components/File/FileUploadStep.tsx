@@ -40,15 +40,13 @@ export function FileUploadStep() {
 
     return (
         <>
-            <div className="flex flex-col items-center justify-center  text-[2rem]">
-
-                <StepDiv currentStep = {1}></StepDiv>
+            <div className="flex flex-col items-center justify-center ">
 
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
                     className="items-center justify-center text-center"
                 >
                     <h2 className="mb-4">
