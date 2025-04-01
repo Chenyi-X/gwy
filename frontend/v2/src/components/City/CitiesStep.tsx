@@ -3,6 +3,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useFormStore } from "@/store/formStore";
 import { useRef } from "react";
+import { StepDiv } from "../StepDiv";
 
 export function CitiesStep() {
     const {
@@ -27,14 +28,8 @@ export function CitiesStep() {
 
     return (
         <div className="flex flex-col justify-center items-center text-[2rem]">
-            <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="text-[5rem] font-bold mb-15"
-            >
-                Step 2
-            </motion.h1>
+            <StepDiv currentStep={2}></StepDiv>
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
