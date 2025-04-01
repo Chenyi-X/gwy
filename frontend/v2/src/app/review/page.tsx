@@ -5,6 +5,9 @@ import { useFormStore } from "@/store/formStore";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge"
+import { useState } from "react";
+import { FormAPI } from "@/service/api";
+import { toast } from "sonner";
 
 export function ReviewPage() {
     const router = useRouter();
@@ -14,17 +17,61 @@ export function ReviewPage() {
         education,
         majors,
         isGraduating,
-        setIsCompleted
+        isCompleted,
+        setIsCompleted,
+        resetForm
     } = useFormStore();
 
-    const handleSubmit = () => {
+    const handleReset = () => {
+        resetForm(); // 重置表单
+        router.push('/config'); // 跳转到配置页面
+    };
+
+    const handleSubmit = async () => {
         setIsCompleted(true);
+
+        try {
+            const formData = {
+                fileConfig,
+                cities,
+                education,
+                majors,
+                isGraduating,
+                currentStep : 6,
+                isCompleted,
+            };
+
+            const response = await FormAPI.submitForm(formData);
+
+            if (response.success) {
+                toast("提交成功", {
+                    action: {
+                        label: "好的",
+                        onClick: () => console.log("OK"),
+                    },
+                    description: "服务器处理中",
+                });
+
+                resetForm(); // 可选：重置表单
+                router.push('/success');
+            } else {
+                throw new Error(response.message);
+            }
+
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        }
+
         router.push('/success');
     };
 
     const handleEdit = () => {
         router.push('/config');
     };
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-6">
@@ -92,21 +139,42 @@ export function ReviewPage() {
                     </div>
                 </Card>
 
+
                 <div className="flex justify-center gap-4 mt-8">
                     <Button
                         variant="outline"
+                        onClick={() => {
+                            toast("确认要重置吗？",{
+                                action: {
+                                    label: "确认",
+                                    onClick: handleReset,
+                                    
+                                },
+                                
+                                description: "重置后您的配置将被清空"
+                            })
+                        }}
+                        className="w-32"
+                    >
+                        重新进行配置
+                    </Button>
+                    <Button
+                        variant="outline"
                         onClick={handleEdit}
+                        disabled={isSubmitting}
                         className="w-32"
                     >
                         返回修改
                     </Button>
                     <Button
                         onClick={handleSubmit}
+                        disabled={isSubmitting}
                         className="w-32"
                     >
-                        确认提交
+                        {isSubmitting ? "提交中..." : "确认提交"}
                     </Button>
-                </div>
+                </div>                
+
             </motion.div>
         </div>
     );
