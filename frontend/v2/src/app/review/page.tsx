@@ -85,12 +85,12 @@ export function ReviewPage() {
     const factorsArray = Object.keys(factors);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-6">
+        <div className="flex flex-col items-center justify-center min-h-screen p-6 max-w-screen">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full max-w-2xl space-y-6"
+                className="w-full max-w-2xl space-y-6 flex-grow"
             >
                 <h1 className="text-3xl font-bold text-center mt-15 mb-3">确认您的选择</h1>
 
@@ -143,7 +143,7 @@ export function ReviewPage() {
                     {/* 权重分配 */}
                     <div className="space-y-2">
                         <h2 className="text-xl font-semibold">因素得分</h2>
-                        <div className="flex flex-col gap-2 w-1/3">
+                        <div className="flex flex-col gap-2 w-2/3 md:w-1/3">
                            {factorsArray.map((factor,index) => (
                             <div key={index} className="flex gap-2">
                                 <Badge key={factor} variant={"outline"} className="flex-2">
@@ -159,7 +159,7 @@ export function ReviewPage() {
                 </Card>
 
 
-                <div className="flex justify-center gap-4 mt-8">
+                <div className="flex justify-center gap-4 mt-8 flex-wrap">
                     <Button
                         variant="outline"
                         onClick={() => {

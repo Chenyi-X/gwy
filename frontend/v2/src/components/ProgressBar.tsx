@@ -51,7 +51,7 @@ export function ProgressBar({
 
               {/* 步骤文字 */}
               <span
-                className={`text-sm font-medium transition-colors duration-300 
+                className={` invisible sm:visible text-sm font-medium transition-colors duration-300 
                   ${isCurrent || isCompleted ? 'text-foreground' : 'text-muted-foreground'}
                   group-hover:text-foreground`}
               >

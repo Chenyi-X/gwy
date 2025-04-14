@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { useFormStore } from "@/store/formStore";
-import { useState } from "react";
-import { StepDiv } from "../StepDiv";
+import { useEffect, useState } from "react";
 import { Education } from "@/store/formStore";
 import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
@@ -39,13 +38,32 @@ export function EducationStep() {
     })
 
     const handleClick = (id: number) => {
-        setButtons(buttons.map(button =>
-            button.id === id
-                ? ({ ...button, isClick: !button.isClick }
-                )
-                : { ...button, disabled: !button.disabled }
-        ));
-        setEducation(buttons.find(button => button.id === id)?.text as Education);
+        // 找到当前点击的按钮
+        const clickedButton = buttons.find(button => button.id === id);
+        
+        // 如果按钮已经被选中，则取消选中并启用所有按钮
+        if (clickedButton && clickedButton.isClick) {
+            const newButtons = buttons.map(button => ({
+                ...button,
+                isClick: false,
+                disabled: false
+            }));
+            setButtons(newButtons);
+            setEducation('空' as Education); // 清除选择
+        } 
+        // 如果按钮未被选中，则选中它并禁用其他按钮
+        else {
+            const newButtons = buttons.map(button => ({
+                ...button,
+                isClick: button.id === id,
+                disabled: button.id !== id
+            }));
+            setButtons(newButtons);
+            
+            if (clickedButton) {
+                setEducation(clickedButton.text as Education);
+            }
+        }
     };
 
     const handleSwitchChanged = (isChecked: boolean) => {
@@ -63,7 +81,7 @@ export function EducationStep() {
             >
                 <p>您的学历是？</p>
 
-                <div className="flex gap-3 mt-3 mb-3">
+                <div className="flex gap-3 mt-3 mb-3 flex-wrap items-center justify-center">
 
                     {buttons.map((button) => (
                         <Button
@@ -79,7 +97,7 @@ export function EducationStep() {
                 </div>
 
 
-                <div className=" flex items-center space-x-2 justify-center">
+                <div className=" flex items-center space-x-2 justify-center pr-2">
                     <div className="flex-1/2"> </div>
                     <Switch
                         className="ml-2"

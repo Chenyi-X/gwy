@@ -44,7 +44,7 @@ const WeightStep = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="w-2/5"
+                    className="w-full"
                 >
                     <FactorBar></FactorBar>
                 </motion.div>

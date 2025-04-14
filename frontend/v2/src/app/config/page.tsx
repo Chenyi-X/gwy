@@ -34,20 +34,26 @@ const ConfigPage = () => {
   };
 
   return (
-    <div className='h-screen flex flex-col justify-end'>
+    <div className=' min-h-screen lg:h-screen flex flex-col lg:justify-end justify-start'>
 
       <div className='flex-grow'>
-        <div className='pt-[7rem] flex flex-col items-center justify-center  text-[2rem]'>
+        
+
+        <div className='pt-[7rem] flex flex-col items-center justify-center  text-[2rem] min-w-screen'>
 
           <StepDiv currentStep = {currentStep}></StepDiv>
 
-          {currentStep === 1 && <FileUploadStep />}
-          {currentStep === 2 && <CitiesStep />}
-          {currentStep === 3 && <CityPreferenceStep />}
-          {currentStep === 4 && <CompetitionStep />}
-          {currentStep === 5 && <EducationStep />}
-          {currentStep === 6 && <MajorsStep />}
-          {currentStep === 7 && <WeightStep />}
+          <div className='pl-7 pr-7'>
+            {currentStep === 1 && <FileUploadStep />}
+            {currentStep === 2 && <CitiesStep />}
+            {currentStep === 3 && <CityPreferenceStep />}
+            {currentStep === 4 && <CompetitionStep />}
+            {currentStep === 5 && <EducationStep />}
+            {currentStep === 6 && <MajorsStep />}
+            {currentStep === 7 && <WeightStep />}
+          </div>
+
+          
         </div>
 
         {/* 按钮 */}
@@ -89,7 +95,7 @@ const ConfigPage = () => {
 
         <div className='flex-grow-2'></div>
 
-        <div className='flex-grow-1'>
+        <div className='flex-grow-1 justify-self-end'>
           <ProgressBar
             step={currentStep}
             totalSteps={7}
